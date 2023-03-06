@@ -22,27 +22,27 @@ const passengerMap = [
 // comparar com a 'distância', esta fosse menor
 
 function findNewRide(driverPositionX, driverPositionY) {
-    let minimumDistance = Infinity; 
+    let minimumDistance = Infinity;
     let passengerCordinates = [];
 
-    for (let i = 0; i < passengerMap.length; i++) {
-        for (let j = 0; j < passengerMap[i].length; j++) {
-            if (passengerMap[i][j] == 1) {
-                const distance = Math.sqrt((i - driverPositionX) ** 2 + 
-                (j - driverPositionY) ** 2);
-                if (distance < minimumDistance) {
-                    minimumDistance = distance;
-                    passengerCordinates = [i, j];
-                }
+    for (let i = 0; i < passengerMap.length; i++) {         // Dentro de um laço for fiz com que ele analisasse linha por linha
+        for (let j = 0; j < passengerMap[i].length; j++) { // Dentro de outro laço for aninhado fiz que analisasse coluna por coluna
+            if (passengerMap[i][j] == 1) {                // Caso a condição fosse verdadeira, com a iteração retornasse 1 
+                const distance = Math.sqrt((i - driverPositionX) ** 2 +
+                    (j - driverPositionY) ** 2);        // Seria calculada a distância através da distância de pitágoras
+                if (distance < minimumDistance) {      // Ao fazer isso dentro de outra condicional tornei a 'distance'  
+                    minimumDistance = distance;       // como 'minimumDistance'
+                    passengerCordinates = [i, j];    // Daí teríamos a variável 'passengerCordinates' representada por um array
+                }                                   // de valores 'i' e 'j';
             }
         }
     }
 
-    return [[passengerCordinates], minimumDistance.toFixed(2) + " km"];
-}
+    return [[passengerCordinates], minimumDistance.toFixed(2) + " km"]; // o return armazenaria um array com a coordenada e
+}                                                                      // a distância mínima.
 
 //Teste o funcionamento da função com um console.log, independente dos tests abaixo.
-console.log(findNewRide(8,5))
+console.log(findNewRide(8, 5))
 
 
 // Tests, do not change, comment/uncomment for use.
